@@ -1,7 +1,7 @@
-<?= $this->extend('layout/v_template'); ?>
+<?php echo $this->extend('layout/v_template'); ?>
 
-<?= $this->extend('layout/v_template'); ?>
+<?php echo $this->extend('layout/v_template'); ?>
 
-<?= $this->section('content'); ?>
+<?php echo $this->section('content'); ?>
 <h1>Informasi</h1>
-<?= $this->endSection(); ?>
+<?php echo $this->endSection(); ?>
