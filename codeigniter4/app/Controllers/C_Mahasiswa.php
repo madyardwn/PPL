@@ -14,6 +14,16 @@ class C_Mahasiswa extends BaseController
         return view('mahasiswa/v_display', $data);
     }
 
+    public function detail($nim)
+    {
+        $model = new \App\Models\m_mahasiswa();
+        $data = [
+            'title' => 'Detail Mahasiswa',
+            'mahasiswa' => $model->show($nim)
+        ];
+        return view('mahasiswa/v_detail', $data);
+    }
+
     public function add()
     {
         $model = new \App\Models\m_mahasiswa();

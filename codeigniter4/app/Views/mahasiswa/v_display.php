@@ -4,8 +4,6 @@
 
 <body>
     <h2 style="font-size: 30px;">Data Mahasiswa</h2>
-    <br />
-    <br />
     <table class="table" border="2" style="font-size: 20px;">
         <thead>
             <tr>
@@ -26,6 +24,7 @@
                     <td>
                         <a href="<?php echo base_url('mahasiswa/edit/' . $data['nim']) ?>">Edit</a>
                         <a href="<?php echo base_url('mahasiswa/delete/' . $data['nim']) ?>">Delete</a>
+                        <a href="<?php echo base_url('mahasiswa/detail/' . $data['nim']) ?>">Detail</a>
                     </td>
                 </tr>
                 <?php
