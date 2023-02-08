@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php echo $this->extend('layout/v_template'); ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<?php echo $this->section('content'); ?>
 
 <body>
     <h2 style="font-size: 30px;">Data Mahasiswa</h2>
@@ -62,4 +56,4 @@
     </form>
 </body>
 
-</html>
+<?php echo $this->endSection(); ?>

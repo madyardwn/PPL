@@ -20,6 +20,7 @@
             <td bgcolor="lightyellow">
                 <a href="<?php echo base_url('home') ?>">Home</a>
                 <a href=" <?php echo base_url('info') ?>">Info</a>
+                <a href=" <?php echo base_url('mahasiswa') ?>">Mahasiswa</a>
             </td>
         </tr>
 
