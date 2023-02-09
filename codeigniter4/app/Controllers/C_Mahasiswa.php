@@ -65,4 +65,15 @@ class C_Mahasiswa extends BaseController
         $model->store($data);
         return redirect()->to(base_url('mahasiswa'));
     }
+
+
+    public function search()
+    {
+        $model = new \App\Models\m_mahasiswa();
+        $data = [
+            'title' => 'Data Mahasiswa',
+            'mahasiswa' => $model->search($this->request->getPost('keyword'))
+        ];
+        return view('mahasiswa/v_display', $data);
+    }
 }

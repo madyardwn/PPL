@@ -44,4 +44,15 @@ class m_mahasiswa extends Model
         $db = db_connect();
         $db->query($sql, $data);
     }
+
+    public function search($keyword)
+    {
+        $builder = $this->db->table($this->table)
+            ->like('nim', $keyword)
+            ->orLike('nama', $keyword)
+            ->orLike('umur', $keyword);
+
+        // eksekusi query dan kembalikan hasilnya
+        return $builder->get()->getResultArray();
+    }
 }

@@ -3,6 +3,13 @@
 <?php echo $this->section('content'); ?>
 
 <body>
+    <form action="<?php echo base_url('mahasiswa/search') ?>" method="post">
+        <input type="text" name="keyword" id="keyword" placeholder="Search" autocomplete="off">
+        <button type="submit" name="submit">Search</button>
+    </form>
+
+    <br>
+
     <table class="table" border="1" style="font-size: 20px;">
         <thead>
             <tr>
@@ -16,7 +23,7 @@
             <?php
             if (isset($mahasiswa)) {
                 foreach ($mahasiswa as $data) {
-            ?>
+                    ?>
                     <tr>
                         <td id="nim<?php echo $data['nim'] ?>"><?php echo $data['nim'] ?></td>
                         <td id="nama<?php echo $data['nim'] ?>"><?php echo $data['nama'] ?></td>
@@ -36,7 +43,7 @@
                             <button onclick="showEditForm(<?php echo $data['nim'] ?>)" style="width: 48%;">Cancel</button>
                         </td>
                     </tr>
-            <?php
+                    <?php
                 }
             }
             ?>
