@@ -35,8 +35,8 @@ $routes->get('/mahasiswa', 'C_Mahasiswa::display');
 $routes->post('/mahasiswa/add', 'C_Mahasiswa::add');
 $routes->get('/mahasiswa/delete/(:num)', 'C_Mahasiswa::delete/$1');
 $routes->get('/mahasiswa/edit/(:num)', 'C_Mahasiswa::edit/$1');
-$routes->post('/mahasiswa/update', 'C_Mahasiswa::update');
 $routes->get('/mahasiswa/detail/(:num)', 'C_Mahasiswa::detail/$1');
+$routes->post('/mahasiswa/update/(:num)', 'C_Mahasiswa::update/$1');
 
 
 // Tugas 2 CI4

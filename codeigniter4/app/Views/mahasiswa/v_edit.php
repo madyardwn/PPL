@@ -4,12 +4,8 @@
 
 <body>
   <h2 style="font-size: 30px;">Edit Data Mahasiswa</h2>
-  <form action="<?php echo base_url('mahasiswa/update') ?>" method="post">
+  <form action="<?php echo base_url('mahasiswa/update/' . $mahasiswa['nim']) ?>" method="post">
     <table>
-      <tr>
-        <td>NIM</td>
-        <td><input type="text" name="nim" value="<?php echo $mahasiswa['nim'] ?>" readonly></td>
-      </tr>
       <tr>
         <td>Nama</td>
         <td><input type="text" name="nama" value="<?php echo $mahasiswa['nama'] ?>"></td>

@@ -54,11 +54,11 @@ class C_Mahasiswa extends BaseController
         return view('mahasiswa/v_edit', $data);
     }
 
-    public function update()
+    public function update($nim)
     {
         $model = new \App\Models\m_mahasiswa();
         $data = [
-            'nim' => $this->request->getPost('nim'),
+            'nim' => $nim,
             'nama' => $this->request->getPost('nama'),
             'umur' => $this->request->getPost('umur')
         ];

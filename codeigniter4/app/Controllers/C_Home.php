@@ -8,7 +8,7 @@ class C_Home extends BaseController
     {
         // template
         $data = [
-        'title' => 'Home',
+            'title' => 'Home',
         ];
         return view('pages/v_home', $data);
     }
