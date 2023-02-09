@@ -6,7 +6,7 @@ class C_Mahasiswa extends BaseController
 {
     public function display()
     {
-        $model = new \App\Models\m_mahasiswa();
+        $model = new \App\Models\M_Mahasiswa();
         $data = [
             'title' => 'Data Mahasiswa',
             'mahasiswa' => $model->get()
@@ -16,7 +16,7 @@ class C_Mahasiswa extends BaseController
 
     public function detail($nim)
     {
-        $model = new \App\Models\m_mahasiswa();
+        $model = new \App\Models\M_Mahasiswa();
         $data = [
             'title' => 'Detail Mahasiswa',
             'mahasiswa' => $model->show($nim)
@@ -26,7 +26,7 @@ class C_Mahasiswa extends BaseController
 
     public function add()
     {
-        $model = new \App\Models\m_mahasiswa();
+        $model = new \App\Models\M_Mahasiswa();
         $data = [
             'nim' => $this->request->getPost('nim'),
             'nama' => $this->request->getPost('nama'),
@@ -38,14 +38,14 @@ class C_Mahasiswa extends BaseController
 
     public function delete($nim)
     {
-        $model = new \App\Models\m_mahasiswa();
+        $model = new \App\Models\M_Mahasiswa();
         $model->delete($nim);
         return redirect()->to(base_url('mahasiswa'));
     }
 
     public function edit($nim)
     {
-        $model = new \App\Models\m_mahasiswa();
+        $model = new \App\Models\M_Mahasiswa();
         $data = [
             'title' => 'Edit Data Mahasiswa',
             'mahasiswa' => $model->show($nim)
@@ -55,7 +55,7 @@ class C_Mahasiswa extends BaseController
 
     public function update($nim)
     {
-        $model = new \App\Models\m_mahasiswa();
+        $model = new \App\Models\M_Mahasiswa();
         $data = [
             'nim' => $nim,
             'nama' => $this->request->getPost('nama'),
@@ -69,7 +69,7 @@ class C_Mahasiswa extends BaseController
 
     public function search()
     {
-        $model = new \App\Models\m_mahasiswa();
+        $model = new \App\Models\M_Mahasiswa();
         $data = [
             'title' => 'Data Mahasiswa',
             'mahasiswa' => $model->search($this->request->getPost('keyword'))
