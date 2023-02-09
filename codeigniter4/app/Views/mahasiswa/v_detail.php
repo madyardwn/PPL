@@ -4,7 +4,6 @@
 
 <h1>Detail Mahasiswa</h1>
 
-<!-- show data -->
 <table>
   <tr>
     <td>NIM</td>
@@ -23,6 +22,6 @@
   </tr>
 </table>
 
-<a href="<?php echo base_url('mahasiswa') ?>">Back</a>
+<a href="<?php echo base_url('mahasiswa') ?>"><button>Back</button></a>
 
 <?php echo $this->endSection(); ?>
