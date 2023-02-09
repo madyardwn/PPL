@@ -27,10 +27,10 @@ $routes->set404Override();
  * --------------------------------------------------------------------
  */
 
-// We get a performance increase by specifying the default
-// route since we don't have to scan directories.
+// Authentification
 $routes->get('/', 'Home::index');
-$routes->get('/hello/(:any)/(:num)', 'Home::showme/$1/$2');
+
+// Mahasiswa
 $routes->get('/mahasiswa', 'C_Mahasiswa::index');
 $routes->post('/mahasiswa/store', 'C_Mahasiswa::store');
 $routes->get('/mahasiswa/delete/(:num)', 'C_Mahasiswa::delete/$1');
@@ -38,11 +38,10 @@ $routes->get('/mahasiswa/show/(:num)', 'C_Mahasiswa::show/$1');
 $routes->post('/mahasiswa/update/(:num)', 'C_Mahasiswa::update/$1');
 $routes->post('/mahasiswa/search', 'C_Mahasiswa::search');
 
-
-// Tugas 2 CI4
-// routes for controller C_Info and C_Home as component
+// General
 $routes->get('/info', 'C_Info::index');
 $routes->get('/home', 'C_Home::index');
+$routes->get('/hello/(:any)/(:num)', 'Home::showme/$1/$2');
 
 /*
  * --------------------------------------------------------------------
