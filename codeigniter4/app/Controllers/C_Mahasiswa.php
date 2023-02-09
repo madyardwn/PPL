@@ -34,7 +34,6 @@ class C_Mahasiswa extends BaseController
         ];
 
         $model->add($data);
-        return redirect()->to(base_url('mahasiswa'));
     }
 
     public function delete($nim)

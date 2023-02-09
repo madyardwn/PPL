@@ -3,8 +3,7 @@
 <?php echo $this->section('content'); ?>
 
 <body>
-    <h2 style="font-size: 30px;">Data Mahasiswa</h2>
-    <table class="table" border="2" style="font-size: 20px;">
+    <table class="table" border="1" style="font-size: 20px;">
         <thead>
             <tr>
                 <th>NIM</th>
@@ -16,43 +15,42 @@
         <tbody>
             <?php
             foreach ($mahasiswa as $data) {
-                ?>
+            ?>
                 <tr>
                     <td><?php echo $data['nim'] ?></td>
                     <td><?php echo $data['nama'] ?></td>
                     <td><?php echo $data['umur'] ?></td>
                     <td>
-                        <a href="<?php echo base_url('mahasiswa/edit/' . $data['nim']) ?>">Edit</a>
-                        <a href="<?php echo base_url('mahasiswa/delete/' . $data['nim']) ?>">Delete</a>
-                        <a href="<?php echo base_url('mahasiswa/detail/' . $data['nim']) ?>">Detail</a>
+                        <button><a href=" <?php echo base_url('mahasiswa/edit/' . $data['nim']) ?>">Edit</a></button>
+                        <button><a href=" <?php echo base_url('mahasiswa/delete/' . $data['nim']) ?>">Delete</a></button>
+                        <button><a href=" <?php echo base_url('mahasiswa/detail/' . $data['nim']) ?>">Detail</a></button>
                     </td>
                 </tr>
-                <?php
+            <?php
             }
             ?>
+            <tr>
+                <td><input type="text" name="nim" id="nim" size="10px"></td>
+                <td><input type="text" name="nama" id="nama" size="30px"></td>
+                <td><input type="text" name="umur" id="umur" size="5px"></td>
+                <td><button onclick="sendData()" style="width: 100%;">Tambah</button></td>
+            </tr>
         </tbody>
     </table>
+    <script>
+        function sendData() {
+            var nim = document.getElementById("nim").value;
+            var nama = document.getElementById("nama").value;
+            var umur = document.getElementById("umur").value;
 
-    <form action="<?php echo base_url('mahasiswa/add') ?>" method="post">
-        <table>
-            <tr>
-                <td>NIM</td>
-                <td><input type="text" name="nim"></td>
-            </tr>
-            <tr>
-                <td>Nama</td>
-                <td><input type="text" name="nama"></td>
-            </tr>
-            <tr>
-                <td>Umur</td>
-                <td><input type="text" name="umur"></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" value="Simpan"></td>
-            </tr>
-        </table>
-    </form>
+            // Menggunakan metode AJAX untuk mengirim data
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "<?php echo base_url('mahasiswa/add') ?>", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send("nim=" + nim + "&nama=" + nama + "&umur=" + umur);
+            window.location.href = "<?php echo base_url('mahasiswa') ?>";
+        }
+    </script>
 </body>
 
 <?php echo $this->endSection(); ?>
