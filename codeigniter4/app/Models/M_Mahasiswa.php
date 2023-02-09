@@ -19,7 +19,7 @@ class M_Mahasiswa extends Model
         return $data->getResultArray();
     }
 
-    public function add($data)
+    public function create($data)
     {
         $sql = "INSERT INTO {$this->table} (nim, nama, umur) VALUES (:nim:, :nama:, :umur:)";
 
@@ -27,7 +27,7 @@ class M_Mahasiswa extends Model
         $db->query($sql, $data);
     }
 
-    public function show($nim)
+    public function id($nim)
     {
         $sql = "SELECT * FROM {$this->table} WHERE nim = :nim:";
 
@@ -37,7 +37,7 @@ class M_Mahasiswa extends Model
         return $data->getRowArray();
     }
 
-    public function store($data)
+    public function edit($data)
     {
         $sql = "UPDATE {$this->table} SET nama = :nama:, umur = :umur: WHERE nim = :nim:";
 
@@ -45,7 +45,7 @@ class M_Mahasiswa extends Model
         $db->query($sql, $data);
     }
 
-    public function search($keyword)
+    public function query($keyword)
     {
         $builder = $this->db->table($this->table)
             ->like('nim', $keyword)

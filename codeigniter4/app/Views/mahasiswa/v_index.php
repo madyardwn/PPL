@@ -30,14 +30,14 @@
                         <td id="umur<?php echo $data['nim'] ?>"><?php echo $data['umur'] ?></td>
                         <td>
                             <button id="btnEdit<?php echo $data['nim'] ?>" onclick="showEditForm(<?php echo $data['nim'] ?>)">Edit</button>
-                            <a href=" <?php echo base_url('mahasiswa/detail/' . $data['nim']) ?>"><button>Detail</button></a>
+                            <a href=" <?php echo base_url('mahasiswa/show/' . $data['nim']) ?>"><button>Detail</button></a>
                             <a href=" <?php echo base_url('mahasiswa/delete/' . $data['nim']) ?>"><button>Delete</button></a>
                         </td>
                     </tr>
                     <tr id="editForm<?php echo $data['nim'] ?>" style="display:none;">
-                        <td><input readonly type="text" name="nim" id="nim<?php echo $data['nim'] ?>" value="<?php echo $data['nim'] ?>" size="10px"></td>
-                        <td><input type="text" name="nama" id="nama<?php echo $data['nim'] ?>" value="<?php echo $data['nama'] ?>" size="30px"></td>
-                        <td><input type="text" name="umur" id="umur<?php echo $data['nim'] ?>" value="<?php echo $data['umur'] ?>" size="5px"></td>
+                        <td><input placeholder="NIM" readonly type="text" name="nim" id="nim<?php echo $data['nim'] ?>" value="<?php echo $data['nim'] ?>" size="10px"></td>
+                        <td><input placeholder="Nama" type="text" name="nama" id="nama<?php echo $data['nim'] ?>" value="<?php echo $data['nama'] ?>" size="30px"></td>
+                        <td><input placeholder="Umur" type="text" name="umur" id="umur<?php echo $data['nim'] ?>" value="<?php echo $data['umur'] ?>" size="5px"></td>
                         <td>
                             <button onclick="updateData(<?php echo $data['nim'] ?>)" style="width: 48%;">Update</button>
                             <button onclick="showEditForm(<?php echo $data['nim'] ?>)" style="width: 48%;">Cancel</button>
@@ -48,9 +48,9 @@
             }
             ?>
             <tr>
-                <td><input type="text" name="nim" id="nim" size="10px"></td>
-                <td><input type="text" name="nama" id="nama" size="30px"></td>
-                <td><input type="text" name="umur" id="umur" size="5px"></td>
+                <td><input placeholder="NIM" type="text" name="nim" id="nim" size="10px"></td>
+                <td><input placeholder="Nama" type="text" name="nama" id="nama" size="30px"></td>
+                <td><input placeholder="Umur" type="text" name="umur" id="umur" size="5px"></td>
                 <td><button onclick="sendData()" style="width: 100%;">Tambah</button></td>
             </tr>
         </tbody>
@@ -77,7 +77,7 @@
 
             var xhttp = new XMLHttpRequest();
 
-            xhttp.open("POST", "<?php echo base_url('mahasiswa/add') ?>", true);
+            xhttp.open("POST", "<?php echo base_url('mahasiswa/store') ?>", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.send("nim=" + nim + "&nama=" + nama + "&umur=" + umur);
 

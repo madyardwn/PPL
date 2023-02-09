@@ -4,27 +4,27 @@ namespace App\Controllers;
 
 class C_Mahasiswa extends BaseController
 {
-    public function display()
+    public function index()
     {
         $model = new \App\Models\M_Mahasiswa();
         $data = [
             'title' => 'Data Mahasiswa',
             'mahasiswa' => $model->get()
         ];
-        return view('mahasiswa/v_display', $data);
+        return view('mahasiswa/v_index', $data);
     }
 
-    public function detail($nim)
+    public function show($nim)
     {
         $model = new \App\Models\M_Mahasiswa();
         $data = [
             'title' => 'Detail Mahasiswa',
-            'mahasiswa' => $model->show($nim)
+            'mahasiswa' => $model->id($nim)
         ];
-        return view('mahasiswa/v_detail', $data);
+        return view('mahasiswa/v_show', $data);
     }
 
-    public function add()
+    public function store()
     {
         $model = new \App\Models\M_Mahasiswa();
         $data = [
@@ -33,7 +33,7 @@ class C_Mahasiswa extends BaseController
             'umur' => $this->request->getPost('umur')
         ];
 
-        $model->add($data);
+        $model->create($data);
     }
 
     public function delete($nim)
@@ -41,16 +41,6 @@ class C_Mahasiswa extends BaseController
         $model = new \App\Models\M_Mahasiswa();
         $model->delete($nim);
         return redirect()->to(base_url('mahasiswa'));
-    }
-
-    public function edit($nim)
-    {
-        $model = new \App\Models\M_Mahasiswa();
-        $data = [
-            'title' => 'Edit Data Mahasiswa',
-            'mahasiswa' => $model->show($nim)
-        ];
-        return view('mahasiswa/v_edit', $data);
     }
 
     public function update($nim)
@@ -62,7 +52,7 @@ class C_Mahasiswa extends BaseController
             'umur' => $this->request->getPost('umur')
         ];
 
-        $model->store($data);
+        $model->edit($data);
         return redirect()->to(base_url('mahasiswa'));
     }
 
@@ -72,8 +62,8 @@ class C_Mahasiswa extends BaseController
         $model = new \App\Models\M_Mahasiswa();
         $data = [
             'title' => 'Data Mahasiswa',
-            'mahasiswa' => $model->search($this->request->getPost('keyword'))
+            'mahasiswa' => $model->query($this->request->getPost('keyword'))
         ];
-        return view('mahasiswa/v_display', $data);
+        return view('mahasiswa/v_index', $data);
     }
 }

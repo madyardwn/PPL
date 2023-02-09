@@ -31,11 +31,10 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->get('/hello/(:any)/(:num)', 'Home::showme/$1/$2');
-$routes->get('/mahasiswa', 'C_Mahasiswa::display');
-$routes->post('/mahasiswa/add', 'C_Mahasiswa::add');
+$routes->get('/mahasiswa', 'C_Mahasiswa::index');
+$routes->post('/mahasiswa/store', 'C_Mahasiswa::store');
 $routes->get('/mahasiswa/delete/(:num)', 'C_Mahasiswa::delete/$1');
-$routes->get('/mahasiswa/edit/(:num)', 'C_Mahasiswa::edit/$1');
-$routes->get('/mahasiswa/detail/(:num)', 'C_Mahasiswa::detail/$1');
+$routes->get('/mahasiswa/show/(:num)', 'C_Mahasiswa::show/$1');
 $routes->post('/mahasiswa/update/(:num)', 'C_Mahasiswa::update/$1');
 $routes->post('/mahasiswa/search', 'C_Mahasiswa::search');
 
