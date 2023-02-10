@@ -29,7 +29,7 @@
             <td width="1000">
                 Selamat Datang, <?php echo session()->get('username'); ?>
             </td>
-            <td bgcolor="red" align="center" width="50px">
+            <td bgcolor="lightyellow" align="center" width="50px">
                 <a href="<?php echo base_url('mahasiswa/logout') ?>">Logout</a>
             </td>
         </tr>

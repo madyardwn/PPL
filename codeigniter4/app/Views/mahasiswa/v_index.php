@@ -45,9 +45,9 @@
                         </td>
                     </tr>
                     <tr id="editForm<?php echo $data['nim'] ?>" style="display:none;">
-                        <td><input autocomplete="off" placeholder="NIM" readonly type="text" name="nim" id="nim<?php echo $data['nim'] ?>" value="<?php echo $data['nim'] ?>" size="10px"></td>
-                        <td><input autocomplete="off" placeholder="Nama" type="text" name="nama" id="nama<?php echo $data['nim'] ?>" value="<?php echo $data['nama'] ?>" size="30px"></td>
-                        <td><input autocomplete="off" placeholder="Umur" type="text" name="umur" id="umur<?php echo $data['nim'] ?>" value="<?php echo $data['umur'] ?>" size="5px"></td>
+                        <td><?php echo $data['nim'] ?></td>
+                        <td><input autocomplete="off" maxlength="32" placeholder="Nama" type="text" name="nama" id="nama<?php echo $data['nim'] ?>" value="<?php echo $data['nama'] ?>" size="30px"></td>
+                        <td><input autocomplete="off" maxlength="2" placeholder="Umur" type="text" name="umur" id="umur<?php echo $data['nim'] ?>" value="<?php echo $data['umur'] ?>" size="5px"></td>
                         <td>
                             <button onclick="updateData(<?php echo $data['nim'] ?>)" style="width: 48%;">Update</button>
                             <button onclick="showEditForm(<?php echo $data['nim'] ?>)" style="width: 48%;">Cancel</button>
@@ -96,7 +96,6 @@
         }
 
         function updateData(nim) {
-            var nim = document.getElementById("nim" + nim).value;
             var nama = document.getElementById("nama" + nim).value;
             var umur = document.getElementById("umur" + nim).value;
 
@@ -104,7 +103,7 @@
 
             xhttp.open("POST", "<?php echo base_url('mahasiswa/update/') ?>" + "/" + nim, true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.send("nim=" + nim + "&nama=" + nama + "&umur=" + umur);
+            xhttp.send("&nama=" + nama + "&umur=" + umur);
             window.location.reload();
         }
     </script>
