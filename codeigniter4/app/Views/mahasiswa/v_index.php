@@ -7,6 +7,7 @@
     <form action="<?php echo base_url('mahasiswa/search') ?>" method="post">
         <input type="text" name="keyword" id="keyword" placeholder="Search" autocomplete="off">
         <button type="submit" name="submit">Search</button>
+        <a href="<?php echo base_url('mahasiswa') ?>"><button type="button">Clear</button></a>
     </form>
     <!-- <button onclick="clearSearch()">Clear</button> -->
     <!-- </div> -->
@@ -99,10 +100,6 @@
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.send("nim=" + nim + "&nama=" + nama + "&umur=" + umur);
             window.location.reload();
-        }
-
-        function clearSearch() {
-            window.location.href = "<?php echo base_url('mahasiswa') ?>";
         }
     </script>
 </body>

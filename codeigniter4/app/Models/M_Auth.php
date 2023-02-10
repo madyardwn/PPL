@@ -10,6 +10,7 @@ class M_Auth extends Model
 
     public function validateUser($username, $password)
     {
+        $password = md5($password);
         return $this->db->table($this->table)
             ->where(['username' => $username, 'password' => $password])
             ->get()
