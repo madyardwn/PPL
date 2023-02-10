@@ -13,14 +13,15 @@
 
     <?php if (session()->getFlashdata('error')) : ?>
         <div>
-            <?php echo session()->getFlashdata('error'); ?>
+            <i>*<?php echo session()->getFlashdata('error'); ?></i>
         </div>
     <?php elseif (session()->getFlashdata('success')) : ?>
         <div>
             <i>*<?php echo session()->getFlashdata('success'); ?></i>
         </div>
     <?php endif; ?>
-    <table class="table" border="1" style="font-size: 20px;">
+
+    <table class="table" border="1">
         <thead>
             <tr>
                 <th>NIM</th>
@@ -36,7 +37,8 @@
                     <td><?php echo $mhs['nama'] ?></td>
                     <td><?php echo $mhs['umur'] ?></td>
                     <td>
-                        <a href="<?php echo base_url('mahasiswa/edit/' . $mhs['nim']) ?>">Edit</a>
+                        <a href="<?php echo base_url('mahasiswa/show/' . $mhs['nim']) ?>">Detail</a>
+                        <a href=" <?php echo base_url('mahasiswa/edit/' . $mhs['nim']) ?>">Edit</a>
                         <a href="<?php echo base_url('mahasiswa/delete/' . $mhs['nim']) ?>">Delete</a>
                     </td>
                 </tr>
