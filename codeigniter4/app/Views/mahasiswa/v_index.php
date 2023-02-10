@@ -3,17 +3,23 @@
 <?php echo $this->section('content'); ?>
 
 <body>
-    <!-- <div style="display: flex;"> -->
     <form action="<?php echo base_url('mahasiswa/search') ?>" method="post">
         <input type="text" name="keyword" id="keyword" placeholder="Search" autocomplete="off">
         <button type="submit" name="submit">Search</button>
         <a href="<?php echo base_url('mahasiswa') ?>"><button type="button">Clear</button></a>
     </form>
-    <!-- <button onclick="clearSearch()">Clear</button> -->
-    <!-- </div> -->
 
     <br>
 
+    <?php if (session()->getFlashdata('error')) : ?>
+        <div>
+            <?php echo session()->getFlashdata('error'); ?>
+        </div>
+    <?php elseif (session()->getFlashdata('success')) : ?>
+        <div>
+            <i>*<?php echo session()->getFlashdata('success'); ?></i>
+        </div>
+    <?php endif; ?>
     <table class="table" border="1" style="font-size: 20px;">
         <thead>
             <tr>
@@ -39,9 +45,9 @@
                         </td>
                     </tr>
                     <tr id="editForm<?php echo $data['nim'] ?>" style="display:none;">
-                        <td><input placeholder="NIM" readonly type="text" name="nim" id="nim<?php echo $data['nim'] ?>" value="<?php echo $data['nim'] ?>" size="10px"></td>
-                        <td><input placeholder="Nama" type="text" name="nama" id="nama<?php echo $data['nim'] ?>" value="<?php echo $data['nama'] ?>" size="30px"></td>
-                        <td><input placeholder="Umur" type="text" name="umur" id="umur<?php echo $data['nim'] ?>" value="<?php echo $data['umur'] ?>" size="5px"></td>
+                        <td><input autocomplete="off" placeholder="NIM" readonly type="text" name="nim" id="nim<?php echo $data['nim'] ?>" value="<?php echo $data['nim'] ?>" size="10px"></td>
+                        <td><input autocomplete="off" placeholder="Nama" type="text" name="nama" id="nama<?php echo $data['nim'] ?>" value="<?php echo $data['nama'] ?>" size="30px"></td>
+                        <td><input autocomplete="off" placeholder="Umur" type="text" name="umur" id="umur<?php echo $data['nim'] ?>" value="<?php echo $data['umur'] ?>" size="5px"></td>
                         <td>
                             <button onclick="updateData(<?php echo $data['nim'] ?>)" style="width: 48%;">Update</button>
                             <button onclick="showEditForm(<?php echo $data['nim'] ?>)" style="width: 48%;">Cancel</button>
@@ -52,9 +58,9 @@
             }
             ?>
             <tr>
-                <td><input placeholder="NIM" type="text" name="nim" id="nim" size="10px"></td>
-                <td><input placeholder="Nama" type="text" name="nama" id="nama" size="30px"></td>
-                <td><input placeholder="Umur" type="text" name="umur" id="umur" size="5px"></td>
+                <td><input autocomplete="off" maxlength="9" placeholder="NIM" type="text" name="nim" id="nim" size="10px"></td>
+                <td><input autocomplete="off" maxlength="32" placeholder="Nama" type="text" name="nama" id="nama" size="30px"></td>
+                <td><input autocomplete="off" maxlength="2" placeholder="Umur" type="text" name="umur" id="umur" size="5px"></td>
                 <td><button onclick="sendData()" style="width: 100%;">Tambah</button></td>
             </tr>
         </tbody>

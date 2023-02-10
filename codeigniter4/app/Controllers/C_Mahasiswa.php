@@ -33,14 +33,48 @@ class C_Mahasiswa extends BaseController
             'umur' => $this->request->getPost('umur')
         ];
 
-        $model->create($data);
+        if ($model->id($data['nim'])) {
+            session()->setFlashdata('error', 'NIM sudah ada');
+            return redirect()->to(base_url('mahasiswa'));
+        } else if ($data['nim'] == '' || $data['nama'] == '' || $data['umur'] == '') {
+            session()->setFlashdata('error', 'Data tidak boleh ada yang kosong');
+            return redirect()->to(base_url('mahasiswa'));
+        } else if (!is_numeric($data['umur'])) {
+            session()->setFlashdata('error', 'Umur harus berupa angka');
+            return redirect()->to(base_url('mahasiswa'));
+        } else if (!is_numeric($data['nim'])) {
+            session()->setFlashdata('error', 'NIM harus berupa angka');
+            return redirect()->to(base_url('mahasiswa'));
+        } else if ($data['nim'] <= 0) {
+            session()->setFlashdata('error', 'NIM tidak boleh 0 atau negatif');
+            return redirect()->to(base_url('mahasiswa'));
+        } else if ($data['umur'] <= 0) {
+            session()->setFlashdata('error', 'Umur tidak boleh 0 atau negatif');
+            return redirect()->to(base_url('mahasiswa'));
+        } else {
+            try {
+                $model->create($data);
+                session()->setFlashdata('success', 'Data berhasil ditambahkan');
+                return redirect()->to(base_url('mahasiswa'));
+            } catch (\Exception $e) {
+                session()->setFlashdata('error', 'Data gagal ditambahkan' . $e->getMessage());
+                return redirect()->to(base_url('mahasiswa'));
+            }
+        }
     }
 
     public function delete($nim)
     {
         $model = new \App\Models\M_Mahasiswa();
         $model->delete($nim);
-        return redirect()->to(base_url('mahasiswa'));
+
+        if ($model->id($nim)) {
+            session()->setFlashdata('error', 'Data gagal dihapus');
+            return redirect()->to(base_url('mahasiswa'));
+        } else {
+            session()->setFlashdata('success', 'Data berhasil dihapus');
+            return redirect()->to(base_url('mahasiswa'));
+        }
     }
 
     public function update($nim)
@@ -52,8 +86,25 @@ class C_Mahasiswa extends BaseController
             'umur' => $this->request->getPost('umur')
         ];
 
-        $model->edit($data);
-        return redirect()->to(base_url('mahasiswa'));
+        if ($data['nama'] == '' || $data['umur'] == '') {
+            session()->setFlashdata('error', 'Data tidak boleh ada yang kosong');
+            return redirect()->to(base_url('mahasiswa'));
+        } else if (!is_numeric($data['umur'])) {
+            session()->setFlashdata('error', 'Umur harus berupa angka');
+            return redirect()->to(base_url('mahasiswa'));
+        } else if ($data['umur'] <= 0) {
+            session()->setFlashdata('error', 'Umur tidak boleh 0 atau negatif');
+            return redirect()->to(base_url('mahasiswa'));
+        } else {
+            try {
+                $model->edit($data);
+                session()->setFlashdata('success', 'Data berhasil diubah');
+                return redirect()->to(base_url('mahasiswa'));
+            } catch (\Exception $e) {
+                session()->setFlashdata('error', 'Data gagal diubah' . $e->getMessage());
+                return redirect()->to(base_url('mahasiswa'));
+            }
+        }
     }
 
 

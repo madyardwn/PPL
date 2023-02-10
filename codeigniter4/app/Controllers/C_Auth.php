@@ -19,6 +19,11 @@ class C_Auth extends BaseController
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
 
+        if ($username == null || $password == null) {
+            session()->setFlashdata('pesan', 'username atau password tidak boleh kosong');
+            return redirect()->to('/login');
+        }
+
         $auth = new \App\Models\M_Auth();
         $user = $auth->validateUser($username, $password);
 

@@ -27,11 +27,11 @@ $routes->set404Override();
  * --------------------------------------------------------------------
  */
 
-// Authentification
+// Default
 $routes->get('/', 'Home::index');
 $routes->add('hello/(:any)/(:num)', 'C_Home::showme/$1/$2');
 
-// authentication
+// Authentification
 $routes->get('/login', 'C_Auth::index', ['filter' => 'unauthorized']);
 $routes->post('/login', 'C_Auth::login', ['filter' => 'unauthorized']);
 
