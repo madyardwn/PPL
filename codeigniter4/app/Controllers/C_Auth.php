@@ -1,0 +1,49 @@
+<?php
+
+namespace App\Controllers;
+
+use App\Controllers\BaseController;
+
+class C_Auth extends BaseController
+{
+    public function index()
+    {
+        $data = [
+            'title' => 'Login',
+        ];
+        return view('auth/v_index', $data);
+    }
+
+    public function login()
+    {
+        $username = $this->request->getPost('username');
+        $password = $this->request->getPost('password');
+
+        $auth = new \App\Models\M_Auth();
+        $user = $auth->validateUser($username, $password);
+
+        if ($user) {
+            $this->setUserSession($user);
+            return redirect()->to('/mahasiswa');
+        } else {
+            session()->setFlashdata('pesan', 'username atau password salah');
+            return redirect()->to('auth');
+        }
+    }
+
+    private function setUserSession($user)
+    {
+        $data = [
+            'username' => $user->username,
+            'loggedIn' => true,
+        ];
+        session()->set($data);
+        return true;
+    }
+
+    public function logout()
+    {
+        session()->destroy();
+        return redirect()->to('/auth');
+    }
+}

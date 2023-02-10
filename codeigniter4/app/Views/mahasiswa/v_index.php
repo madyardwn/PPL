@@ -3,10 +3,13 @@
 <?php echo $this->section('content'); ?>
 
 <body>
+    <!-- <div style="display: flex;"> -->
     <form action="<?php echo base_url('mahasiswa/search') ?>" method="post">
         <input type="text" name="keyword" id="keyword" placeholder="Search" autocomplete="off">
         <button type="submit" name="submit">Search</button>
     </form>
+    <!-- <button onclick="clearSearch()">Clear</button> -->
+    <!-- </div> -->
 
     <br>
 
@@ -56,6 +59,7 @@
         </tbody>
     </table>
 
+
     <script>
         function showEditForm(nim) {
             var editForm = document.getElementById("editForm" + nim);
@@ -95,6 +99,10 @@
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.send("nim=" + nim + "&nama=" + nama + "&umur=" + umur);
             window.location.reload();
+        }
+
+        function clearSearch() {
+            window.location.href = "<?php echo base_url('mahasiswa') ?>";
         }
     </script>
 </body>

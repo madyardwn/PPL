@@ -29,19 +29,30 @@ $routes->set404Override();
 
 // Authentification
 $routes->get('/', 'Home::index');
+$routes->add('hello/(:any)/(:num)', 'C_Home::showme/$1/$2');
+
+// authentication
+$routes->get('/login', 'C_Auth::index');
+$routes->post('/login', 'C_Auth::login');
 
 // Mahasiswa
-$routes->get('/mahasiswa', 'C_Mahasiswa::index');
-$routes->post('/mahasiswa/store', 'C_Mahasiswa::store');
-$routes->get('/mahasiswa/delete/(:num)', 'C_Mahasiswa::delete/$1');
-$routes->get('/mahasiswa/show/(:num)', 'C_Mahasiswa::show/$1');
-$routes->post('/mahasiswa/update/(:num)', 'C_Mahasiswa::update/$1');
-$routes->post('/mahasiswa/search', 'C_Mahasiswa::search');
+$routes->group(
+    'mahasiswa',
+    function ($routes) {
+        $routes->add('/', 'C_Mahasiswa::index');
+        $routes->add('info', 'C_Info::index');
+        $routes->add('home', 'C_Home::index');
+        $routes->add('logout', 'C_Auth::logout');
 
-// General
-$routes->get('/info', 'C_Info::index');
-$routes->get('/home', 'C_Home::index');
-$routes->get('/hello/(:any)/(:num)', 'Home::showme/$1/$2');
+        $routes->add('search', 'C_Mahasiswa::search');
+
+        $routes->add('store/', 'C_Mahasiswa::store');
+        $routes->add('delete/(:num)', 'C_Mahasiswa::delete/$1');
+        $routes->add('show/(:num)', 'C_Mahasiswa::show/$1');
+        $routes->add('update/(:num)', 'C_Mahasiswa::update/$1');
+    },
+);
+
 
 /*
  * --------------------------------------------------------------------
