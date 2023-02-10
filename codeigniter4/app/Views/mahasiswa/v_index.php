@@ -20,7 +20,7 @@
             <i>*<?php echo session()->getFlashdata('success'); ?></i>
         </div>
     <?php endif; ?>
-    <table class="table" border="1" style="font-size: 20px;">
+    <table class="table" border="1">
         <thead>
             <tr>
                 <th>NIM</th>
@@ -35,7 +35,7 @@
                 foreach ($mahasiswa as $data) {
                     ?>
                     <tr>
-                        <td id="nim<?php echo $data['nim'] ?>"><?php echo $data['nim'] ?></td>
+                        <td id=" nim<?php echo $data['nim'] ?>"><?php echo $data['nim'] ?></td>
                         <td id="nama<?php echo $data['nim'] ?>"><?php echo $data['nama'] ?></td>
                         <td id="umur<?php echo $data['nim'] ?>"><?php echo $data['umur'] ?></td>
                         <td>
