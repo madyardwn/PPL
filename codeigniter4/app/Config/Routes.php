@@ -50,6 +50,9 @@ $routes->group(
         $routes->add('delete/(:num)', 'C_Mahasiswa::delete/$1', ['filter' => 'auth']);
         $routes->add('show/(:num)', 'C_Mahasiswa::show/$1', ['filter' => 'auth']);
         $routes->add('update/(:num)', 'C_Mahasiswa::update/$1', ['filter' => 'auth']);
+
+        $routes->add('edit/(:num)', 'C_Mahasiswa::edit/$1', ['filter' => 'auth']);
+        $routes->add('create', 'C_Mahasiswa::create', ['filter' => 'auth']);
     }
 );
 

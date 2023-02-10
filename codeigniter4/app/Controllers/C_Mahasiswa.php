@@ -117,4 +117,22 @@ class C_Mahasiswa extends BaseController
         ];
         return view('mahasiswa/v_index', $data);
     }
+
+    public function edit($nim)
+    {
+        $model = new \App\Models\M_Mahasiswa();
+        $data = [
+            'title' => 'Edit Mahasiswa',
+            'mahasiswa' => $model->id($nim)
+        ];
+        return view('mahasiswa/v_edit', $data);
+    }
+
+    public function create()
+    {
+        $data = [
+            'title' => 'Tambah Mahasiswa'
+        ];
+        return view('mahasiswa/v_create', $data);
+    }
 }

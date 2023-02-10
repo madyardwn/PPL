@@ -30,83 +30,21 @@
             </tr>
         </thead>
         <tbody>
-            <?php
-            if (isset($mahasiswa)) {
-                foreach ($mahasiswa as $data) {
-                    ?>
-                    <tr>
-                        <td id="nim<?php echo $data['nim'] ?>"><?php echo $data['nim'] ?></td>
-                        <td id="nama<?php echo $data['nim'] ?>"><?php echo $data['nama'] ?></td>
-                        <td id="umur<?php echo $data['nim'] ?>"><?php echo $data['umur'] ?></td>
-                        <td>
-                            <button id="btnEdit<?php echo $data['nim'] ?>" onclick="showEditForm(<?php echo $data['nim'] ?>)">Edit</button>
-                            <a href=" <?php echo base_url('mahasiswa/show/' . $data['nim']) ?>"><button>Detail</button></a>
-                            <a href=" <?php echo base_url('mahasiswa/delete/' . $data['nim']) ?>"><button>Delete</button></a>
-                        </td>
-                    </tr>
-                    <tr id="editForm<?php echo $data['nim'] ?>" style="display:none;">
-                        <td><?php echo $data['nim'] ?></td>
-                        <td><input autocomplete="off" maxlength="32" placeholder="Nama" type="text" name="nama" id="nama<?php echo $data['nim'] ?>" value="<?php echo $data['nama'] ?>" size="30px"></td>
-                        <td><input autocomplete="off" maxlength="2" placeholder="Umur" type="text" name="umur" id="umur<?php echo $data['nim'] ?>" value="<?php echo $data['umur'] ?>" size="5px"></td>
-                        <td>
-                            <button onclick="updateData(<?php echo $data['nim'] ?>)" style="width: 48%;">Update</button>
-                            <button onclick="showEditForm(<?php echo $data['nim'] ?>)" style="width: 48%;">Cancel</button>
-                        </td>
-                    </tr>
-                    <?php
-                }
-            }
-            ?>
-            <tr>
-                <td><input autocomplete="off" maxlength="9" placeholder="NIM" type="text" name="nim" id="nim" size="10px"></td>
-                <td><input autocomplete="off" maxlength="32" placeholder="Nama" type="text" name="nama" id="nama" size="30px"></td>
-                <td><input autocomplete="off" maxlength="2" placeholder="Umur" type="text" name="umur" id="umur" size="5px"></td>
-                <td><button onclick="sendData()" style="width: 100%;">Tambah</button></td>
-            </tr>
+            <?php foreach ($mahasiswa as $mhs) : ?>
+                <tr>
+                    <td><?php echo $mhs['nim'] ?></td>
+                    <td><?php echo $mhs['nama'] ?></td>
+                    <td><?php echo $mhs['umur'] ?></td>
+                    <td>
+                        <a href="<?php echo base_url('mahasiswa/edit/' . $mhs['nim']) ?>">Edit</a>
+                        <a href="<?php echo base_url('mahasiswa/delete/' . $mhs['nim']) ?>">Delete</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
         </tbody>
     </table>
-
-
-    <script>
-        function showEditForm(nim) {
-            var editForm = document.getElementById("editForm" + nim);
-            var btnEdit = document.getElementById("btnEdit" + nim);
-            var baris = document.getElementById("nim" + nim).parentNode;
-
-            if (editForm.style.display == "none") {
-                baris.parentNode.replaceChild(editForm, baris);
-                editForm.style.display = "table-row";
-            } else {
-                window.location.reload();
-            }
-        }
-
-        function sendData() {
-            var nim = document.getElementById("nim").value;
-            var nama = document.getElementById("nama").value;
-            var umur = document.getElementById("umur").value;
-
-            var xhttp = new XMLHttpRequest();
-
-            xhttp.open("POST", "<?php echo base_url('mahasiswa/store') ?>", true);
-            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.send("nim=" + nim + "&nama=" + nama + "&umur=" + umur);
-
-            window.location.reload();
-        }
-
-        function updateData(nim) {
-            var nama = document.getElementById("nama" + nim).value;
-            var umur = document.getElementById("umur" + nim).value;
-
-            var xhttp = new XMLHttpRequest();
-
-            xhttp.open("POST", "<?php echo base_url('mahasiswa/update/') ?>" + "/" + nim, true);
-            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.send("&nama=" + nama + "&umur=" + umur);
-            window.location.reload();
-        }
-    </script>
+    <br>
+    <a href="<?php echo base_url('mahasiswa/create') ?>">Tambah Data</a>
 </body>
 
 <?php echo $this->endSection(); ?>
