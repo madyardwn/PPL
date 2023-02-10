@@ -13,7 +13,7 @@
       <h1>Login</h1>
       <?php if (session()->getFlashdata('pesan')) : ?>
         <div>
-            <?php echo session()->getFlashdata('pesan'); ?>
+          <i>*<?php echo session()->getFlashdata('pesan'); ?></i>
         </div>
       <?php endif; ?>
       <table>
