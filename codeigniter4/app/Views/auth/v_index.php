@@ -9,7 +9,13 @@
 
   <center>
     <form action="<?php echo base_url('login'); ?>" method="post">
+
       <h1>Login</h1>
+      <?php if (session()->getFlashdata('pesan')) : ?>
+        <div>
+            <?php echo session()->getFlashdata('pesan'); ?>
+        </div>
+      <?php endif; ?>
       <table>
         <tr>
           <td>Username</td>

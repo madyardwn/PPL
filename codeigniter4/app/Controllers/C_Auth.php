@@ -27,7 +27,7 @@ class C_Auth extends BaseController
             return redirect()->to('/mahasiswa');
         } else {
             session()->setFlashdata('pesan', 'username atau password salah');
-            return redirect()->to('auth');
+            return redirect()->to('/login');
         }
     }
 
@@ -38,12 +38,11 @@ class C_Auth extends BaseController
             'loggedIn' => true,
         ];
         session()->set($data);
-        return true;
     }
 
     public function logout()
     {
         session()->destroy();
-        return redirect()->to('/auth');
+        return redirect()->to('/login');
     }
 }

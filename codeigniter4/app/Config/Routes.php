@@ -32,25 +32,25 @@ $routes->get('/', 'Home::index');
 $routes->add('hello/(:any)/(:num)', 'C_Home::showme/$1/$2');
 
 // authentication
-$routes->get('/login', 'C_Auth::index');
-$routes->post('/login', 'C_Auth::login');
+$routes->get('/login', 'C_Auth::index', ['filter' => 'unauthorized']);
+$routes->post('/login', 'C_Auth::login', ['filter' => 'unauthorized']);
 
 // Mahasiswa
 $routes->group(
     'mahasiswa',
     function ($routes) {
-        $routes->add('/', 'C_Mahasiswa::index');
-        $routes->add('info', 'C_Info::index');
-        $routes->add('home', 'C_Home::index');
-        $routes->add('logout', 'C_Auth::logout');
+        $routes->add('/', 'C_Mahasiswa::index', ['filter' => 'auth']);
+        $routes->add('info', 'C_Info::index', ['filter' => 'auth']);
+        $routes->add('home', 'C_Home::index', ['filter' => 'auth']);
+        $routes->add('logout', 'C_Auth::logout', ['filter' => 'auth']);
 
-        $routes->add('search', 'C_Mahasiswa::search');
+        $routes->add('search', 'C_Mahasiswa::search', ['filter' => 'auth']);
 
-        $routes->add('store/', 'C_Mahasiswa::store');
-        $routes->add('delete/(:num)', 'C_Mahasiswa::delete/$1');
-        $routes->add('show/(:num)', 'C_Mahasiswa::show/$1');
-        $routes->add('update/(:num)', 'C_Mahasiswa::update/$1');
-    },
+        $routes->add('store/', 'C_Mahasiswa::store', ['filter' => 'auth']);
+        $routes->add('delete/(:num)', 'C_Mahasiswa::delete/$1', ['filter' => 'auth']);
+        $routes->add('show/(:num)', 'C_Mahasiswa::show/$1', ['filter' => 'auth']);
+        $routes->add('update/(:num)', 'C_Mahasiswa::update/$1', ['filter' => 'auth']);
+    }
 );
 
 
