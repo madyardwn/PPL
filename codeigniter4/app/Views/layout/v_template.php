@@ -27,7 +27,7 @@
                 <a href="<?php echo base_url('mahasiswa') ?>">Mahasiswa</a>
             </td>
             <td width="1000">
-                Selamat Datang, <?php echo session()->get('username'); ?>
+                Selamat Datang <?php echo session()->get('username'); ?>, Anda login pada branch kuno
             </td>
             <td bgcolor="lightyellow" align="center" width="50px">
                 <a href="<?php echo base_url('mahasiswa/logout') ?>">Logout</a>
