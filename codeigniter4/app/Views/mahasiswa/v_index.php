@@ -50,7 +50,7 @@
                         <td><input autocomplete="off" maxlength="2" placeholder="Umur" type="text" name="umur" id="umur<?php echo $data['nim'] ?>" value="<?php echo $data['umur'] ?>" size="5px"></td>
                         <td>
                             <button onclick="updateData(<?php echo $data['nim'] ?>)" style="width: 48%;">Update</button>
-                            <button onclick="showEditForm(<?php echo $data['nim'] ?>)" style="width: 48%;">Cancel</button>
+                            <button onclick="window.location.reload()" style="width: 48%;">Cancel</button>
                         </td>
                     </tr>
                     <?php
@@ -73,12 +73,8 @@
             var btnEdit = document.getElementById("btnEdit" + nim);
             var baris = document.getElementById("nim" + nim).parentNode;
 
-            if (editForm.style.display == "none") {
-                baris.parentNode.replaceChild(editForm, baris);
-                editForm.style.display = "table-row";
-            } else {
-                window.location.reload();
-            }
+            baris.parentNode.replaceChild(editForm, baris);
+            editForm.style.display = "table-row";
         }
 
         function sendData() {
