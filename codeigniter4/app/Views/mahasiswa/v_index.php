@@ -33,7 +33,7 @@
             <?php
             if (isset($mahasiswa)) {
                 foreach ($mahasiswa as $data) {
-            ?>
+                    ?>
                     <tr>
                         <td id="nim<?php echo $data['nim'] ?>"><?php echo $data['nim'] ?></td>
                         <td id="nama<?php echo $data['nim'] ?>"><?php echo $data['nama'] ?></td>
@@ -49,11 +49,11 @@
                         <td><input autocomplete="off" maxlength="32" placeholder="Nama" type="text" name="nama" id="nama<?php echo $data['nim'] ?>" value="<?php echo $data['nama'] ?>" size="30px"></td>
                         <td><input autocomplete="off" maxlength="2" placeholder="Umur" type="text" name="umur" id="umur<?php echo $data['nim'] ?>" value="<?php echo $data['umur'] ?>" size="5px"></td>
                         <td>
-                            <button onclick="updateData(<?php echo $data['nim'] ?>)" style="width: 48%;">Update</button>
-                            <button onclick="window.location.reload()" style="width: 48%;">Cancel</button>
+                            <button onclick="updateData(<?php echo $data['nim'] ?>)" style="width: 47%;">Update</button>
+                            <button onclick="window.location.reload()" style="width: 47%;">Cancel</button>
                         </td>
                     </tr>
-            <?php
+                    <?php
                 }
             }
             ?>
