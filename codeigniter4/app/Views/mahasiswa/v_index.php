@@ -13,7 +13,7 @@
 
     <?php if (session()->getFlashdata('error')) : ?>
         <div>
-            <?php echo session()->getFlashdata('error'); ?>
+            <i>*<?php echo session()->getFlashdata('error'); ?></i>
         </div>
     <?php elseif (session()->getFlashdata('success')) : ?>
         <div>
@@ -33,7 +33,7 @@
             <?php
             if (isset($mahasiswa)) {
                 foreach ($mahasiswa as $data) {
-                    ?>
+            ?>
                     <tr>
                         <td id="nim<?php echo $data['nim'] ?>"><?php echo $data['nim'] ?></td>
                         <td id="nama<?php echo $data['nim'] ?>"><?php echo $data['nama'] ?></td>
@@ -53,7 +53,7 @@
                             <button onclick="window.location.reload()" style="width: 48%;">Cancel</button>
                         </td>
                     </tr>
-                    <?php
+            <?php
                 }
             }
             ?>
