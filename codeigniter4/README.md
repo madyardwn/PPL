@@ -10,3 +10,5 @@
   username: `admin`
   password: `password`
 7. Run `php spark serve` to start the development server
+
+`localhost:8080/login`
