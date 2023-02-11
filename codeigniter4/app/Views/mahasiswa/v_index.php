@@ -35,7 +35,7 @@
                 foreach ($mahasiswa as $data) {
                     ?>
                     <tr>
-                        <td id=" nim<?php echo $data['nim'] ?>"><?php echo $data['nim'] ?></td>
+                        <td id="nim<?php echo $data['nim'] ?>"><?php echo $data['nim'] ?></td>
                         <td id="nama<?php echo $data['nim'] ?>"><?php echo $data['nama'] ?></td>
                         <td id="umur<?php echo $data['nim'] ?>"><?php echo $data['umur'] ?></td>
                         <td>
@@ -105,4 +105,4 @@
     </script>
 </body>
 
-<?php echo $this->endSection(); ?>
+<?php echo $this->endSection(); ?>o $this->endSection(); ?>
