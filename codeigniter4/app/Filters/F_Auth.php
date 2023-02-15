@@ -12,6 +12,8 @@ class F_Auth implements FilterInterface
     {
         // Do something here
         if (!session()->get('loggedIn')) {
+            // give a flashdata message
+            session()->setFlashdata('pesan', 'Anda belum login');
             return redirect()->to('/login');
         }
     }
