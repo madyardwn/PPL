@@ -9,6 +9,8 @@ class M_Mahasiswa extends Model
     protected $table = 'mahasiswa';
     protected $primaryKey = 'nim';
 
+    protected $allowedFields = ['nim', 'nama', 'umur'];
+
     public function get()
     {
         $sql = "SELECT * FROM {$this->table}";
@@ -37,24 +39,15 @@ class M_Mahasiswa extends Model
         return $data->getRowArray();
     }
 
-    public function edit($data)
+    public function edit($data, $nim)
     {
-        $sql = "UPDATE {$this->table} SET nama = :nama:, umur = :umur: WHERE nim = :nim:";
-
+        $sql = "UPDATE {$this->table} SET nim = :nim:, nama = :nama:, umur = :umur: WHERE nim =" . $nim;
         $db = db_connect();
         $db->query($sql, $data);
     }
 
     public function query($keyword)
     {
-        // $builder = $this->db->table($this->table)
-        //     ->like('nim', $keyword)
-        //     ->orLike('nama', $keyword)
-        //     ->orLike('umur', $keyword);
-        //
-        // // eksekusi query dan kembalikan hasilnya
-        // return $builder->get()->getResultArray();
-
         $sql = "SELECT * FROM {$this->table} WHERE nim LIKE '%{$keyword}%' OR nama LIKE '%{$keyword}%' OR umur LIKE '%{$keyword}%'";
         $db = db_connect();
         $data = $db->query($sql);

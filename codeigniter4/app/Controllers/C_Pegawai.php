@@ -172,6 +172,7 @@ class C_Pegawai extends BaseController
             return view('pegawai/v_edit', $data);
         } else {
             $model->edit($data, $nim);
+            session()->setFlashdata('pesan', 'Data berhasil diubah');
             return redirect()->to('/pegawai');
         }
     }
@@ -184,5 +185,15 @@ class C_Pegawai extends BaseController
             'pegawai' => $model->id($nim)
         ];
         return view('pegawai/v_edit', $data);
+    }
+
+    public function search()
+    {
+        $model = new \App\Models\M_Pegawai();
+        $data = [
+            'title' => 'Data Pegawai',
+            'pegawai' => $model->query($this->request->getPost('keyword'))
+        ];
+        return view('pegawai/v_index', $data);
     }
 }

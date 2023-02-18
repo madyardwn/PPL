@@ -2,13 +2,20 @@
 
 <?php echo $this->section('content'); ?>
 
-<h1><?php echo $title ?></h1>
+<form action="<?php echo base_url('pegawai/search') ?>" method="post">
+  <input type="text" name="keyword" id="keyword" placeholder="Search" autocomplete="off">
+  <button type="submit" name="submit">Search</button>
+  <a href="<?php echo base_url('pegawai') ?>"><button type="button">Clear</button></a>
+</form>
+
+<br>
 
 <?php if (session()->getFlashdata('pesan')) : ?>
   <i>* <?php echo session()->getFlashdata('pesan'); ?></i>
 <?php endif; ?>
 
 <table class="table" border="1">
+
   <thead>
     <tr>
       <th>NIM</th>
@@ -30,15 +37,15 @@
         <td><?php echo $pgw['email'] ?></td>
         <td><?php echo $pgw['pendidikan'] ?></td>
         <td>
-          <a href="<?php echo base_url('pegawai/show/' . $pgw['nim']) ?>">Detail</a>
-          <a href="<?php echo base_url('pegawai/edit/' . $pgw['nim']) ?>">Edit</a>
-          <a href="<?php echo base_url('pegawai/delete/' . $pgw['nim']) ?>">Delete</a>
+          <a href="<?php echo base_url('pegawai/show/' . $pgw['nim']) ?>"><button type="button">Detail</button></a>
+          <a href="<?php echo base_url('pegawai/edit/' . $pgw['nim']) ?>"><button type="button">Edit</button></a>
+          <a href="<?php echo base_url('pegawai/delete/' . $pgw['nim']) ?>"><button type="button">Delete</button></a>
         </td>
       </tr>
     <?php endforeach; ?>
   </tbody>
 </table>
 <br>
-<a href="<?php echo base_url('pegawai/create') ?>">Tambah Data</a>
+<a href="<?php echo base_url('pegawai/create') ?>">+ Tambah Data</a>
 
 <?php echo $this->endSection(); ?>

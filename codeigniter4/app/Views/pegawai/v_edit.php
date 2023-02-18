@@ -4,6 +4,8 @@
 
 <?php $validation = \Config\Services::validation(); ?>
 
+<h2>Edit Data Pegawai</h2>
+
 <form action="<?php echo base_url('pegawai/update/' . $pegawai['nim']); ?>" method="post">
   <table>
     <tr>
