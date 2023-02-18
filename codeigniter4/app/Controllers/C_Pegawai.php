@@ -7,11 +7,23 @@ class C_Pegawai extends BaseController
     public function index()
     {
         $model = new \App\Models\M_Pegawai();
-        $data = [
-            'title' => 'Data Pegawai',
-            'pegawai' => $model->paginate(10, 'pegawai'),
-            'pager' => $model->pager
-        ];
+        if ($this->request->getVar('keyword')) {
+            $keyword = $this->request->getVar('keyword');
+            $data = [
+                'title' => 'Daftar Pegawai',
+                'pegawai' => $model->search($keyword)->paginate(5, 'pegawai'),
+                'pager' => $model->pager,
+                'keyword' => $keyword
+            ];
+        } else {
+            $data = [
+                'title' => 'Daftar Pegawai',
+                'pegawai' => $model->paginate(5, 'pegawai'),
+                'pager' => $model->pager,
+                'currentPage' => $model->getCurrentPage(),
+                'keyword' => ''
+            ];
+        }
         return view('pegawai/v_index', $data);
     }
 
@@ -186,15 +198,5 @@ class C_Pegawai extends BaseController
             'pegawai' => $model->id($nim)
         ];
         return view('pegawai/v_edit', $data);
-    }
-
-    public function search()
-    {
-        $model = new \App\Models\M_Pegawai();
-        $data = [
-            'title' => 'Data Pegawai',
-            'pegawai' => $model->query($this->request->getPost('keyword'))
-        ];
-        return view('pegawai/v_index', $data);
     }
 }

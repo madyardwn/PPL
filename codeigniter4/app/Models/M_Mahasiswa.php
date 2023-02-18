@@ -46,11 +46,13 @@ class M_Mahasiswa extends Model
         $db->query($sql, $data);
     }
 
-    public function query($keyword)
+    public function search($keyword)
     {
-        $sql = "SELECT * FROM {$this->table} WHERE nim LIKE '%{$keyword}%' OR nama LIKE '%{$keyword}%' OR umur LIKE '%{$keyword}%'";
-        $db = db_connect();
-        $data = $db->query($sql);
-        return $data->getResultArray();
+        return $this->table('mahasiswa')->like('nim', $keyword)->orLike('nama', $keyword)->orLike('umur', $keyword);
+    }
+
+    public function getCurrentPage()
+    {
+        return $this->currentPage;
     }
 }

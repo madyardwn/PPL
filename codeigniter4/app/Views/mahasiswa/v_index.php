@@ -2,14 +2,12 @@
 
 <?php echo $this->section('content'); ?>
 
-<form action="<?php echo base_url('mahasiswa/search') ?>" method="post">
-    <input type="text" name="keyword" id="keyword" placeholder="Search" autocomplete="off">
-    <button type="submit" name="submit">Search</button>
+<form action="<?php echo base_url('mahasiswa') ?>" method="get">
+    <input type="text" name="keyword" placeholder="Cari NIM, Nama, atau Umur" value="<?php echo $keyword ?>">
+    <button type="submit">Cari</button>
     <a href="<?php echo base_url('mahasiswa') ?>"><button type="button">Clear</button></a>
 </form>
-<br>
 
-<a href="<?php echo base_url('mahasiswa/create') ?>">+ Tambah Data</a>
 <br>
 
 <?php if (session()->getFlashdata('pesan')) : ?>
@@ -40,14 +38,13 @@
         <?php endforeach; ?>
         <tr>
             <td colspan="4">
-                <div class="pagination">
-                    <?php echo $pager->simplelinks('mahasiswa'); ?>
-                </div>
+                <?php echo $pager->simplelinks('mahasiswa') ?>
             </td>
         </tr>
     </tbody>
 </table>
 
-
+<br>
+<a href="<?php echo base_url('mahasiswa/create') ?>">+ Tambah Data</a>
 
 <?php echo $this->endSection(); ?>

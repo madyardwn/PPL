@@ -8,11 +8,23 @@ class C_Mahasiswa extends BaseController
     public function index()
     {
         $model = new \App\Models\M_Mahasiswa();
-        $data = [
-            'title' => 'Data Mahasiswa',
-            'mahasiswa' => $model->paginate(10, 'mahasiswa'),
-            'pager' => $model->pager
-        ];
+        if ($this->request->getVar('keyword')) {
+            $keyword = $this->request->getVar('keyword');
+            $data = [
+                'title' => 'Daftar Mahasiswa',
+                'mahasiswa' => $model->search($keyword)->paginate(10, 'mahasiswa'),
+                'pager' => $model->pager,
+                'keyword' => $keyword
+            ];
+        } else {
+            $data = [
+                'title' => 'Daftar Mahasiswa',
+                'mahasiswa' => $model->paginate(10, 'mahasiswa'),
+                'pager' => $model->pager,
+                'currentPage' => $model->getCurrentPage(),
+                'keyword' => ''
+            ];
+        }
         return view('mahasiswa/v_index', $data);
     }
 
@@ -127,17 +139,6 @@ class C_Mahasiswa extends BaseController
             session()->setFlashdata('pesan', 'Data berhasil diubah');
             return redirect()->to(base_url('mahasiswa'));
         }
-    }
-
-
-    public function search()
-    {
-        $model = new \App\Models\M_Mahasiswa();
-        $data = [
-            'title' => 'Data Mahasiswa',
-            'mahasiswa' => $model->query($this->request->getPost('keyword'))
-        ];
-        return view('mahasiswa/v_index', $data);
     }
 
     public function edit($nim)

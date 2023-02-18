@@ -46,12 +46,19 @@ class M_Pegawai extends Model
     $db->query($sql, $data);
   }
 
-
-  public function query($keyword)
+  public function search($keyword)
   {
-    $sql = "SELECT * FROM {$this->table} WHERE nim LIKE '%{$keyword}%' OR nama LIKE '%{$keyword}%' OR email LIKE '%{$keyword}%' OR telepon LIKE '%{$keyword}%' OR pendidikan LIKE '%{$keyword}%' OR gender LIKE '%{$keyword}%'";
-    $db = db_connect();
-    $data = $db->query($sql);
-    return $data->getResultArray();
+    return $this->table('pegawai')
+      ->like('nama', $keyword)
+      ->orLike('nim', $keyword)
+      ->orLike('gender', $keyword)
+      ->orLike('telepon', $keyword)
+      ->orLike('email', $keyword)
+      ->orLike('pendidikan', $keyword);
+  }
+
+  public function getCurrentPage()
+  {
+    return $this->currentPage;
   }
 }

@@ -44,8 +44,6 @@ $routes->group(
         $routes->add('home', 'C_Home::index', ['filter' => 'auth']);
         $routes->add('logout', 'C_Auth::logout', ['filter' => 'auth']);
 
-        $routes->add('search', 'C_Mahasiswa::search', ['filter' => 'auth']);
-
         $routes->add('store/', 'C_Mahasiswa::store', ['filter' => 'auth']);
         $routes->add('delete/(:num)', 'C_Mahasiswa::delete/$1', ['filter' => 'auth']);
         $routes->add('show/(:num)', 'C_Mahasiswa::show/$1', ['filter' => 'auth']);
@@ -64,8 +62,6 @@ $routes->group(
         $routes->add('info', 'C_Info::index', ['filter' => 'auth']);
         $routes->add('home', 'C_Home::index', ['filter' => 'auth']);
         $routes->add('logout', 'C_Auth::logout', ['filter' => 'auth']);
-
-        $routes->add('search', 'C_Pegawai::search', ['filter' => 'auth']);
 
         $routes->add('store/', 'C_Pegawai::store', ['filter' => 'auth']);
         $routes->add('delete/(:num)', 'C_Pegawai::delete/$1', ['filter' => 'auth']);
