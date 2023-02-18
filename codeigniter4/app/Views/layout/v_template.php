@@ -4,6 +4,19 @@
 <head>
     <meta charset="utf-8">
     <title><?php echo $title ?></title>
+    <style>
+        .pager {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .pager li {
+            list-style: none;
+            margin: 0 5px;
+        }
+    </style>
 </head>
 
 <body>

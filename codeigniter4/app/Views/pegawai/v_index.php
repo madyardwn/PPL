@@ -43,6 +43,13 @@
         </td>
       </tr>
     <?php endforeach; ?>
+    <tr>
+      <td colspan="7">
+        <div class="pagination">
+          <?php echo $pager->simplelinks('pegawai'); ?>
+        </div>
+      </td>
+    </tr>
   </tbody>
 </table>
 <br>

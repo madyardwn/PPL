@@ -4,12 +4,14 @@ namespace App\Controllers;
 
 class C_Mahasiswa extends BaseController
 {
+
     public function index()
     {
         $model = new \App\Models\M_Mahasiswa();
         $data = [
             'title' => 'Data Mahasiswa',
-            'mahasiswa' => $model->get()
+            'mahasiswa' => $model->paginate(10, 'mahasiswa'),
+            'pager' => $model->pager
         ];
         return view('mahasiswa/v_index', $data);
     }
@@ -66,7 +68,7 @@ class C_Mahasiswa extends BaseController
             return view('mahasiswa/v_create', $data);
         } else {
             $model->insert($data);
-            session()->setFlashdata('success', 'Data berhasil ditambahkan');
+            session()->setFlashdata('pesan', 'Data berhasil ditambahkan');
             return redirect()->to(base_url('mahasiswa'));
         }
     }

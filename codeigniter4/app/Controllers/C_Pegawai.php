@@ -9,7 +9,8 @@ class C_Pegawai extends BaseController
         $model = new \App\Models\M_Pegawai();
         $data = [
             'title' => 'Data Pegawai',
-            'pegawai' => $model->get()
+            'pegawai' => $model->paginate(10, 'pegawai'),
+            'pager' => $model->pager
         ];
         return view('pegawai/v_index', $data);
     }

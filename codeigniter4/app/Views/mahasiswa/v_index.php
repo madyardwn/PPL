@@ -7,7 +7,9 @@
     <button type="submit" name="submit">Search</button>
     <a href="<?php echo base_url('mahasiswa') ?>"><button type="button">Clear</button></a>
 </form>
+<br>
 
+<a href="<?php echo base_url('mahasiswa/create') ?>">+ Tambah Data</a>
 <br>
 
 <?php if (session()->getFlashdata('pesan')) : ?>
@@ -36,9 +38,16 @@
                 </td>
             </tr>
         <?php endforeach; ?>
+        <tr>
+            <td colspan="4">
+                <div class="pagination">
+                    <?php echo $pager->simplelinks('mahasiswa'); ?>
+                </div>
+            </td>
+        </tr>
     </tbody>
 </table>
-<br>
-<a href="<?php echo base_url('mahasiswa/create') ?>">+ Tambah Data</a>
+
+
 
 <?php echo $this->endSection(); ?>
