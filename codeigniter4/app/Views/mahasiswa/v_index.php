@@ -3,7 +3,7 @@
 <?php echo $this->section('content'); ?>
 
 <form action="<?php echo base_url('mahasiswa') ?>" method="get">
-    <input type="text" name="keyword" placeholder="Cari NIM, Nama, atau Umur" value="<?php echo $keyword ?>">
+    <input type="text" name="keyword" placeholder="Cari NIM, Nama, atau Umur" value="<?php echo $keyword ?>" autocomplete="off">
     <button type="submit">Cari</button>
     <a href="<?php echo base_url('mahasiswa') ?>"><button type="button">Clear</button></a>
 </form>
