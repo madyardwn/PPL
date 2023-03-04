@@ -11,14 +11,14 @@ class C_Pegawai extends BaseController
             $keyword = $this->request->getVar('keyword');
             $data = [
                 'title' => 'Daftar Pegawai',
-                'pegawai' => $model->search($keyword)->paginate(10, 'pegawai'),
+                'pegawai' => $model->search($keyword)->paginate(7, 'pegawai'),
                 'pager' => $model->pager,
                 'keyword' => $keyword
             ];
         } else {
             $data = [
                 'title' => 'Daftar Pegawai',
-                'pegawai' => $model->paginate(10, 'pegawai'),
+                'pegawai' => $model->paginate(7, 'pegawai'),
                 'pager' => $model->pager,
                 'currentPage' => $model->getCurrentPage(),
                 'keyword' => ''

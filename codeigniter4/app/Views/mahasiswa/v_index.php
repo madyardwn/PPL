@@ -2,49 +2,50 @@
 
 <?php echo $this->section('content'); ?>
 
-<form action="<?php echo base_url('mahasiswa') ?>" method="get">
-    <input type="text" name="keyword" placeholder="Cari NIM, Nama, atau Umur" value="<?php echo $keyword ?>" autocomplete="off">
-    <button type="submit">Cari</button>
-    <a href="<?php echo base_url('mahasiswa') ?>"><button type="button">Clear</button></a>
-</form>
-
-<br>
+<div class="row mb-3 mt-3 justify-content-between bg-dark text-white">
+    <div class="col-md-4">
+        <a href="<?php echo base_url('mahasiswa/create') ?>" class="fa fa-plus btn btn-primary"> Tambah Data</a>
+    </div>
+    <div class="col-md-4">
+        <form action="<?php echo base_url('mahasiswa') ?>" method="get">
+            <div class="input-group">
+                <input type="text" class="form-control bg-dark text-white" placeholder="Cari data mahasiswa" name="keyword">
+                <button class="fa fa-search btn btn-secondary" type="submit" name="submit"></button>
+            </div>
+        </form>
+    </div>
+</div>
 
 <?php if (session()->getFlashdata('pesan')) : ?>
     <i>* <?php echo session()->getFlashdata('pesan'); ?></i>
 <?php endif; ?>
 
-<table class="table" border="1">
-    <thead>
+<table class=" table table-dark table-striped table-bordered text-center" style="width:100%">
+    <thead class="table-light">
         <tr>
-            <th>NIM</th>
-            <th>Nama</th>
-            <th>Umur</th>
-            <th>Opsi</th>
+            <th class="bg-secondary text-white">NIM</th>
+            <th class="bg-secondary text-white">Nama</th>
+            <th class="bg-secondary text-white">Umur</th>
+            <th class="bg-secondary text-white">Aksi</th>
         </tr>
     </thead>
-    <tbody>
-        <?php foreach ($mahasiswa as $mhs) : ?>
+    <tbody class="table-dark">
+        <?php foreach ($mahasiswa as $row) : ?>
             <tr>
-                <td><?php echo $mhs['nim'] ?></td>
-                <td><?php echo $mhs['nama'] ?></td>
-                <td><?php echo $mhs['umur'] ?></td>
+                <td><?php echo $row['nim']; ?></td>
+                <td><?php echo $row['nama']; ?></td>
+                <td><?php echo $row['umur']; ?></td>
                 <td>
-                    <a href="<?php echo base_url('mahasiswa/show/' . $mhs['nim']) ?>"><button type="button">Detail</button></a>
-                    <a href=" <?php echo base_url('mahasiswa/edit/' . $mhs['nim']) ?>"><button type="button">Edit</button></a>
-                    <a href="<?php echo base_url('mahasiswa/delete/' . $mhs['nim']) ?>"><button type="button">Delete</button></a>
+                    <a href="<?php echo base_url('mahasiswa/show/' . $row['nim']); ?>" class="fa fa-eye btn btn-info"></a>
+                    <a href="<?php echo base_url('mahasiswa/edit/' . $row['nim']); ?>" class="fa fa-edit btn btn-warning"></a>
+                    <a href="<?php echo base_url('mahasiswa/delete/' . $row['nim']); ?>" class="fa fa-trash btn btn-danger" onclick="return confirm('Apakah anda yakin?')"></a>
                 </td>
             </tr>
         <?php endforeach; ?>
-        <tr>
-            <td colspan="4">
-                <?php echo $pager->simplelinks('mahasiswa') ?>
-            </td>
-        </tr>
     </tbody>
 </table>
 
-<br>
-<a href="<?php echo base_url('mahasiswa/create') ?>">+ Tambah Data</a>
+<?php echo $pager->links('mahasiswa', 'v_pagination'); ?>
 
 <?php echo $this->endSection(); ?>
+</script>

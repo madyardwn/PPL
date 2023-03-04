@@ -2,32 +2,37 @@
 
 <?php echo $this->section('content'); ?>
 
-<form action="<?php echo base_url('pegawai') ?>" method="get">
-  <input type="text" name="keyword" placeholder="Cari NIM, Nama, dll." value="<?php echo $keyword ?>" autocomplete="off">
-  <button type="submit">Cari</button>
-  <a href="<?php echo base_url('pegawai') ?>"><button type="button">Clear</button></a>
-</form>
-
-<br>
+<div class="row mb-3 mt-3 justify-content-between bg-dark text-white">
+  <div class="col-md-4">
+    <a href="<?php echo base_url('pegawai/create') ?>" class="fa fa-plus btn btn-primary"> Tambah Data</a>
+  </div>
+  <div class="col-md-4">
+    <form action="<?php echo base_url('pegawai') ?>" method="get">
+      <div class="input-group">
+        <input type="text" class="form-control  bg-dark text-white" placeholder="Cari data pegawai" name="keyword">
+        <button class="fa fa-search btn btn-secondary" type="submit" name="submit"></button>
+      </div>
+    </form>
+  </div>
+</div>
 
 <?php if (session()->getFlashdata('pesan')) : ?>
   <i>* <?php echo session()->getFlashdata('pesan'); ?></i>
 <?php endif; ?>
 
-<table class="table" border="1">
-
-  <thead>
+<table class=" table table-dark table-striped table-bordered text-center" style="width:100%">
+  <thead class="table-light">
     <tr>
-      <th>NIM</th>
-      <th>Nama</th>
-      <th>Gender</th>
-      <th>Telepon</th>
-      <th>Email</th>
-      <th>Pendidikan</th>
-      <th>Aksi</th>
+      <th class="bg-secondary text-white">NIM</th>
+      <th class="bg-secondary text-white">Nama</th>
+      <th class="bg-secondary text-white">Gender</th>
+      <th class="bg-secondary text-white">Telepon</th>
+      <th class="bg-secondary text-white">Email</th>
+      <th class="bg-secondary text-white">Pendidikan</th>
+      <th class="bg-secondary text-white">Aksi</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="table-dark">
     <?php foreach ($pegawai as $pgw) : ?>
       <tr>
         <td><?php echo $pgw['nim'] ?></td>
@@ -37,22 +42,15 @@
         <td><?php echo $pgw['email'] ?></td>
         <td><?php echo $pgw['pendidikan'] ?></td>
         <td>
-          <a href="<?php echo base_url('pegawai/show/' . $pgw['nim']) ?>"><button type="button">Detail</button></a>
-          <a href="<?php echo base_url('pegawai/edit/' . $pgw['nim']) ?>"><button type="button">Edit</button></a>
-          <a href="<?php echo base_url('pegawai/delete/' . $pgw['nim']) ?>"><button type="button">Delete</button></a>
+          <a href="<?php echo base_url('pegawai/show/' . $pgw['nim']); ?>" class="fa fa-eye btn btn-info"></a>
+          <a href="<?php echo base_url('pegawai/edit/' . $pgw['nim']); ?>" class="fa fa-edit btn btn-warning"></a>
+          <a href="<?php echo base_url('pegawai/delete/' . $pgw['nim']); ?>" class="fa fa-trash btn btn-danger" onclick="return confirm('Apakah anda yakin?')"></a>
         </td>
       </tr>
     <?php endforeach; ?>
-    <tr>
-      <td colspan="7">
-        <div class="pagination">
-          <?php echo $pager->simplelinks('pegawai'); ?>
-        </div>
-      </td>
-    </tr>
   </tbody>
 </table>
-<br>
-<a href="<?php echo base_url('pegawai/create') ?>">+ Tambah Data</a>
+
+<?php echo $pager->links('pegawai', 'v_pagination'); ?>
 
 <?php echo $this->endSection(); ?>

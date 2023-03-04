@@ -12,11 +12,12 @@
   </div>
 <?php endif; ?>
 
-<form action="<?php echo base_url('pegawai/store') ?>" method="post">
-  <table>
+
+<form action="<?php echo base_url('pegawai/store') ?>" method="post" class="bg-dark">
+  <table class="table table-dark">
     <tr>
       <td>NIM</td>
-      <td><input autocomplete="off" maxlength="9" placeholder="NIM" type="text" name="nim" value="<?php echo isset($_POST['nim']) ? $_POST['nim'] : ''; ?>"></td>
+      <td><input autocomplete="off" maxlength="9" placeholder="NIM" type="text" name="nim" value="<?php echo isset($_POST['nim']) ? $_POST['nim'] : ''; ?>" class="bg-dark text-light form-control"></td>
       <td>
         <?php if ($validation->hasError('nim')) : ?>
           * <i><?php echo $validation->getError('nim'); ?></i>
@@ -26,7 +27,7 @@
     <tr>
       <td>Nama</td>
       <td>
-        <input autocomplete="off" maxlength="25" placeholder="Nama" type="text" name="nama" value="<?php echo isset($_POST['nama']) ? $_POST['nama'] : ''; ?>">
+        <input autocomplete="off" maxlength="32" placeholder="Nama" type="text" name="nama" value="<?php echo isset($_POST['nama']) ? $_POST['nama'] : ''; ?>" class="bg-dark text-light form-control">
       </td>
       <td>
         <?php if ($validation->hasError('nama')) : ?>
@@ -37,8 +38,9 @@
     <tr>
       <td>Gender</td>
       <td>
-        <label><input type="radio" name="gender" value="Laki-laki" <?php echo (isset($_POST['gender']) && $_POST['gender'] == 'Laki-laki') ? 'checked' : ''; ?>>Laki-Laki</label>
-        <label><input type="radio" name="gender" value="Perempuan" <?php echo (isset($_POST['gender']) && $_POST['gender'] == 'Perempuan') ? 'checked' : ''; ?>>Perempuan</label>
+        <label><input type="radio" name="gender" value="Laki-laki" <?php echo (isset($_POST['gender']) && $_POST['gender'] == 'Laki-laki') ? 'checked' : ''; ?> class="border-light form-check-input bg-dark text-light"> Laki-laki</label>
+        <span> | </span>
+        <label><input type="radio" name="gender" value="Perempuan" <?php echo (isset($_POST['gender']) && $_POST['gender'] == 'Perempuan') ? 'checked' : ''; ?> class="border-light form-check-input bg-dark text-light"> Perempuan</label>
       </td>
       <td>
         <?php if ($validation->hasError('gender')) : ?>
@@ -48,8 +50,7 @@
     </tr>
     <tr>
       <td>Telepon</td>
-      <td><input autocomplete="off" maxlength="15" placeholder="Telepon" type="text" name="telepon" value="<?php echo isset($_POST['telepon']) ? $_POST['telepon'] : ''; ?>"></td>
-      </td>
+      <td><input autocomplete="off" maxlength="13" placeholder="Telepon" type="text" name="telepon" value="<?php echo isset($_POST['telepon']) ? $_POST['telepon'] : ''; ?>" class="bg-dark text-light form-control"></td>
       <td>
         <?php if ($validation->hasError('telepon')) : ?>
           * <i><?php echo $validation->getError('telepon'); ?></i>
@@ -58,8 +59,7 @@
     </tr>
     <tr>
       <td>Email</td>
-      <td><input autocomplete="off" maxlength="32" placeholder="Email" type="email" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>"></td>
-      </td>
+      <td><input autocomplete="off" maxlength="32" placeholder="Email" type="text" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>" class="bg-dark text-light form-control"></td>
       <td>
         <?php if ($validation->hasError('email')) : ?>
           * <i><?php echo $validation->getError('email'); ?></i>
@@ -70,13 +70,12 @@
       <!-- selection -->
       <td>Pendidikan</td>
       <td>
-        <select name="pendidikan">
-          <option value="" disabled selected>Pilih Pendidikan</option>
+        <select name="pendidikan" class="text-light form-control bg-dark">
+          <option value="">-- Pilih Pendidikan --</option>
           <option value="SD" <?php echo (isset($_POST['pendidikan']) && $_POST['pendidikan'] == 'SD') ? 'selected' : ''; ?>>SD</option>
           <option value="SMP" <?php echo (isset($_POST['pendidikan']) && $_POST['pendidikan'] == 'SMP') ? 'selected' : ''; ?>>SMP</option>
           <option value="SMA" <?php echo (isset($_POST['pendidikan']) && $_POST['pendidikan'] == 'SMA') ? 'selected' : ''; ?>>SMA</option>
         </select>
-      </td>
       </td>
       <td>
         <?php if ($validation->hasError('pendidikan')) : ?>
@@ -87,11 +86,11 @@
     <tr>
       <td></td>
       <td>
-        <input type="submit" value="Simpan">
-        <span></span>
-        <a href="<?php echo base_url('pegawai') ?>"><button type="button">Back</button></a>
+        <input type="submit" name="submit" value="Simpan" class="btn btn-primary">
+        <a href="<?php echo base_url('mahasiswa'); ?>" class="btn btn-secondary">Kembali</a>
       </td>
     </tr>
   </table>
 </form>
+
 <?php echo $this->endSection(); ?>
