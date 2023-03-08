@@ -12,14 +12,14 @@ class C_Mahasiswa extends BaseController
             $keyword = $this->request->getVar('keyword');
             $data = [
                 'title' => 'Daftar Mahasiswa',
-                'mahasiswa' => $model->search($keyword)->paginate(7, 'mahasiswa'),
+                'mahasiswa' => $model->search($keyword)->paginate(6, 'mahasiswa'),
                 'pager' => $model->pager,
                 'keyword' => $keyword
             ];
         } else {
             $data = [
                 'title' => 'Daftar Mahasiswa',
-                'mahasiswa' => $model->paginate(7, 'mahasiswa'),
+                'mahasiswa' => $model->paginate(6, 'mahasiswa'),
                 'pager' => $model->pager,
                 'currentPage' => $model->getCurrentPage(),
                 'keyword' => ''
